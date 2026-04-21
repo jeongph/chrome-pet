@@ -373,7 +373,60 @@
   }
 
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-4px);
+  }
+
+  /* 줄어든 움직임 */
+}
+
+/* 자는 상태 (Sleeping) */
+#screen-pet[data-state="sleeping"] .pet-body-shape,
+#screen-pet[data-state="sleeping"] .pet-head {
+  animation: breathing 3s ease-in-out infinite;
+}
+
+#screen-pet[data-state="sleeping"] .pet-eye {
+  transform: scaleY(0.1);
+  /* 눈 감기 */
+}
+
+@keyframes breathing {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+/* Zzz 효과 */
+.zzz-particle {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  color: #5a3a28;
+  font-size: 14px;
+  font-weight: bold;
+  pointer-events: none;
+  animation: zzz-float 3s ease-out forwards;
+}
+
+@keyframes zzz-float {
+  0% {
+    transform: translate(-50%, 0) scale(0.5);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-10%, -40px) scale(1.2);
+    opacity: 0;
   }
 }
 

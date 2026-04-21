@@ -36,45 +36,39 @@
 
   const DOG = `
     <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <!-- 살짝 말린 꼬리 -->
-      <path class="pet-tail" d="M18 50 Q6 44 12 32 Q18 28 16 38"
-            stroke="#8b5a2b" stroke-width="5" fill="none"
-            stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- 몸통 -->
-      <ellipse class="pet-body-shape" cx="42" cy="52" rx="24" ry="15" fill="#d4a574"/>
-      <!-- 배 포인트 -->
-      <ellipse cx="42" cy="58" rx="16" ry="5" fill="#f0d5a8" opacity="0.6"/>
+      <!-- 꼬리 -->
+      <path class="pet-tail" d="M18 52 Q12 48 14 42"
+            stroke="#7d5a44" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+      <!-- 몸통 (둥근 타원형) -->
+      <ellipse class="pet-body-shape" cx="42" cy="54" rx="22" ry="16" fill="#e8c090"/>
+      
       <!-- 다리 -->
-      <rect class="pet-leg pet-leg-back-1"  x="26" y="60" width="7" height="12" fill="#8b5a2b" rx="2"/>
-      <rect class="pet-leg pet-leg-back-2"  x="35" y="60" width="7" height="12" fill="#6d4420" rx="2"/>
-      <rect class="pet-leg pet-leg-front-1" x="48" y="60" width="7" height="12" fill="#8b5a2b" rx="2"/>
-      <rect class="pet-leg pet-leg-front-2" x="57" y="60" width="7" height="12" fill="#6d4420" rx="2"/>
-      <!-- 발바닥 -->
-      <rect x="26" y="70" width="7" height="2" fill="#4a2d15" rx="1"/>
-      <rect x="35" y="70" width="7" height="2" fill="#4a2d15" rx="1"/>
-      <rect x="48" y="70" width="7" height="2" fill="#4a2d15" rx="1"/>
-      <rect x="57" y="70" width="7" height="2" fill="#4a2d15" rx="1"/>
-      <!-- 머리 -->
-      <ellipse class="pet-head" cx="58" cy="38" rx="15" ry="13" fill="#d4a574"/>
-      <!-- 주둥이 -->
-      <ellipse cx="70" cy="42" rx="8" ry="5.5" fill="#e8c89a"/>
-      <!-- 늘어진 귀 -->
-      <ellipse cx="49" cy="40" rx="4" ry="9" fill="#6d4420"
-               transform="rotate(-20 49 32)"/>
-      <ellipse cx="67" cy="40" rx="4" ry="9" fill="#6d4420"
-               transform="rotate(20 67 32)"/>
-      <!-- 눈 -->
-      <ellipse class="pet-eye pet-eye-left"  cx="56" cy="37" rx="1.8" ry="2.3" fill="#1a0e08"/>
-      <ellipse class="pet-eye pet-eye-right" cx="64" cy="37" rx="1.8" ry="2.3" fill="#1a0e08"/>
-      <circle cx="56.3" cy="36.3" r="0.6" fill="#fff"/>
-      <circle cx="64.3" cy="36.3" r="0.6" fill="#fff"/>
-      <!-- 코 -->
-      <ellipse cx="75" cy="41" rx="2" ry="1.5" fill="#1a0e08"/>
-      <!-- 입 -->
-      <path d="M75 42.5 Q73 46 70 45 M75 42.5 Q76 46 74 45"
-            stroke="#1a0e08" stroke-width="0.7" fill="none" stroke-linecap="round"/>
-      <!-- 혀 -->
-      <ellipse cx="72" cy="46" rx="2" ry="1.3" fill="#ff7a8a" opacity="0.9"/>
+      <rect class="pet-leg pet-leg-back-1"  x="28" y="62" width="7" height="10" fill="#7d5a44" rx="3.5"/>
+      <rect class="pet-leg pet-leg-back-2"  x="37" y="62" width="7" height="10" fill="#6a4a35" rx="3.5"/>
+      <rect class="pet-leg pet-leg-front-1" x="47" y="62" width="7" height="10" fill="#7d5a44" rx="3.5"/>
+      <rect class="pet-leg pet-leg-front-2" x="56" y="62" width="7" height="10" fill="#6a4a35" rx="3.5"/>
+
+      <!-- 머리 (둥근 원형) -->
+      <circle class="pet-head" cx="58" cy="38" r="16" fill="#e8c090"/>
+      
+      <!-- 귀 (진한 갈색, 옆으로 축 처진 Puppy 스타일) -->
+      <ellipse cx="40" cy="33" rx="6" ry="8" fill="#7d5a44" transform="rotate(20 43 38)"/>
+      <ellipse cx="76" cy="33" rx="6" ry="8" fill="#7d5a44" transform="rotate(-20 73 38)"/>
+
+      <!-- 주둥이 영역 (밝은 베이지) -->
+      <ellipse cx="58" cy="44" rx="10" ry="8" fill="#f5d4af"/>
+      
+      <!-- 눈 (검은색 점) -->
+      <circle class="pet-eye pet-eye-left"  cx="52" cy="35" r="2.2" fill="#3a2a20"/>
+      <circle class="pet-eye pet-eye-right" cx="64" cy="35" r="2.2" fill="#3a2a20"/>
+
+      <!-- 코 (작은 역삼각형) -->
+      <path d="M55 40 L61 40 L58 43 Z" fill="#3a2a20" stroke="#3a2a20" stroke-width="1" stroke-linejoin="round"/>
+      
+      <!-- 입과 혀 -->
+      <path d="M55 45 Q58 52 61 45 Z" fill="#ec407a"/>
+      <path d="M54 44.5 Q58 47 62 44.5" stroke="#3a2a20" stroke-width="0.8" fill="none" stroke-linecap="round"/>
     </svg>
   `;
 
@@ -120,8 +114,48 @@
     </svg>
   `;
 
-  global.PET_SVGS = { cat: CAT, dog: DOG, hamster: HAMSTER };
-  global.PET_NAMES = { cat: '고양이', dog: '강아지', hamster: '햄스터' };
-  global.PET_LIST = ['cat', 'dog', 'hamster'];
+  const DINO = `
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <!-- 꼬리 -->
+      <path class="pet-tail" d="M16 56 Q6 58 2 62"
+            stroke="#6ab04c" stroke-width="8" fill="none"
+            stroke-linecap="round"/>
+      <!-- 몸통 -->
+      <ellipse class="pet-body-shape" cx="40" cy="54" rx="22" ry="17" fill="#6ab04c"/>
+      <!-- 배 -->
+      <ellipse cx="42" cy="60" rx="14" ry="7" fill="#88d068" opacity="0.5"/>
+      <!-- 등 무늬 -->
+      <circle cx="34" cy="46" r="2.5" fill="#4a8a32" opacity="0.6"/>
+      <circle cx="40" cy="44" r="2" fill="#4a8a32" opacity="0.5"/>
+      <circle cx="32" cy="52" r="2" fill="#4a8a32" opacity="0.5"/>
+      <circle cx="46" cy="48" r="1.8" fill="#4a8a32" opacity="0.4"/>
+      <circle cx="38" cy="50" r="1.5" fill="#4a8a32" opacity="0.4"/>
+      <!-- 다리 -->
+      <rect class="pet-leg pet-leg-back-1"  x="26" y="63" width="8" height="10" fill="#5a9a3c" rx="3"/>
+      <rect class="pet-leg pet-leg-back-2"  x="36" y="63" width="8" height="10" fill="#4a8a32" rx="3"/>
+      <rect class="pet-leg pet-leg-front-1" x="46" y="63" width="8" height="10" fill="#5a9a3c" rx="3"/>
+      <rect class="pet-leg pet-leg-front-2" x="56" y="63" width="8" height="10" fill="#4a8a32" rx="3"/>
+      <!-- 길어진 목 -->
+      <path d="M52 48 Q58 36 62 24 Q64 16 68 18"
+            stroke="#6ab04c" stroke-width="12" fill="none"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- 머리 -->
+      <circle class="pet-head" cx="68" cy="18" r="10" fill="#6ab04c"/>
+      <!-- 눈 -->
+      <circle class="pet-eye pet-eye-left" cx="70" cy="16" r="2.2" fill="#1a1a1a"/>
+      <circle cx="71" cy="15" r="0.8" fill="#fff"/>
+      <!-- 콧구멍 -->
+      <circle cx="75" cy="17" r="0.8" fill="#4a8a32"/>
+      <!-- 입 -->
+      <path d="M70 20 Q73 23 76 20"
+            stroke="#4a8a32" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+      <!-- 볼터치 -->
+      <circle cx="66" cy="20" r="2" fill="#ff9a9a" opacity="0.3"/>
+    </svg>
+  `;
+
+  global.PET_SVGS = { cat: CAT, dog: DOG, hamster: HAMSTER, dino: DINO };
+  global.PET_NAMES = { cat: 'Ginger Cat', dog: 'Maltese', hamster: 'Hamster', dino: 'Dino' };
+  global.PET_LIST = ['cat', 'dog', 'hamster', 'dino'];
   global.DEFAULT_PET = 'cat';
 })(typeof window !== 'undefined' ? window : self);

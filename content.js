@@ -45,7 +45,7 @@
     if (!window.PET_SVGS || !window.PET_SVGS[petType]) return;
     if (currentPet === petType && pet.dataset.pet === petType && pet.querySelector('.pet-inner')) {
       // 이미 해당 펫이면 말풍선만 띄우기
-      showThought('안녕!');
+      showThought('hi! 👋');
       return;
     }
 
@@ -54,7 +54,7 @@
     pet.innerHTML = buildPetHTML(petType, currentName);
     // 다시 참조 잡기
     thought = pet.querySelector('.pet-thought');
-    showThought('안녕!');
+    showThought('hi! 👋');
   }
 
   function setName(name) {
@@ -96,10 +96,42 @@
     });
   }
 
-  const thoughts = ['냥~', '♡', '와~', '!', '쮸', '헷'];
+  const PET_THOUGHTS = {
+    cat: {
+      idle: ['😺', '💤', '✨', '🐟', '♡', '😼', '🧶', '💭', '🌙', '😻', '🐾', 'meow~', 'zzZ', 'purr~', 'hmph', '…', 'yawn~', 'comfy ♡', '~nya'],
+      click: ['😾', '🙀', '💕', '😽', '🫣', '!!', 'hehe', 'hey!', 'pat me~', 'more!', 'stop!', 'purrr'],
+      chase: ['🏃', '🐭', '😼!', 'gotcha!', 'mine!'],
+      dance: ['🎵', '🎶', '💃', '♪', 'dance~', 'wooo!'],
+    },
+    dog: {
+      idle: ['🐶', '💤', '✨', '🦴', '♡', '🐾', '💭', '🌸', '😊', '🎾', '🥰', 'woof~', 'zzZ', 'arf!', 'hehe', '…', 'yawn~', 'happy ♡', 'sniff~'],
+      click: ['🐕', '💕', '🥺', '😍', '🫶', '!!', 'hehe', 'yay!', 'again!', 'more!', 'woof!', 'love it!'],
+      chase: ['🏃', '🎾', '🐶!', 'fetch!', 'wait!'],
+      dance: ['🎵', '🎶', '🐕‍🦺', '♪', 'dance~', 'wooo!'],
+    },
+    hamster: {
+      idle: ['🐹', '💤', '✨', '🌻', '♡', '🥜', '💭', '🧀', '😊', '🎡', '🥰', 'squeak~', 'zzZ', 'nom nom', 'hehe', '…', 'yawn~', 'cozy ♡', 'munch~'],
+      click: ['🐹!', '💕', '🥺', '😳', '🫣', '!!', 'hehe', 'eek!', 'cheeks!', 'more!', 'squeak!', 'fluffy!'],
+      chase: ['🏃', '🌻', '🐹!', 'seeds!', 'mine!'],
+      dance: ['🎵', '🎶', '🐹', '♪', 'dance~', 'wooo!'],
+    },
+    dino: {
+      idle: ['🦕', '💤', '✨', '🌿', '♡', '🌋', '💭', '🍃', '😊', '🥚', '🥰', 'rawr~', 'zzZ', 'stomp', 'hehe', '…', 'yawn~', 'cozy ♡', 'munch~'],
+      click: ['🦕!', '💕', '🥺', '😳', '🫣', '!!', 'hehe', 'roar!', 'rawr!', 'more!', 'stomp!', 'dino!'],
+      chase: ['🏃', '🌿', '🦕!', 'chomp!', 'mine!'],
+      dance: ['🎵', '🎶', '🦕', '♪', 'dance~', 'wooo!'],
+    },
+  };
+
+  function getThoughts(category) {
+    const petThoughts = PET_THOUGHTS[currentPet] || PET_THOUGHTS.cat;
+    const list = petThoughts[category] || petThoughts.idle;
+    return list[Math.floor(Math.random() * list.length)];
+  }
+
   function showThought(text) {
     if (!thought) return;
-    thought.textContent = text || thoughts[Math.floor(Math.random() * thoughts.length)];
+    thought.textContent = text || getThoughts('idle');
     thought.classList.add('show');
     setTimeout(() => {
       if (thought) thought.classList.remove('show');
@@ -114,13 +146,25 @@
   let lastClickTime = 0;
 
   function createHeart(cx, cy) {
-    const heart = document.createElement('div');
-    heart.className = 'pet-heart-particle';
-    heart.textContent = '❤️';
-    heart.style.left = `${cx}px`;
-    heart.style.top = `${cy}px`;
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 1000);
+    const h = document.createElement('div');
+    h.className = 'heart-particle';
+    h.textContent = '❤️';
+    h.style.left = cx + 'px';
+    h.style.top = cy + 'px';
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 800);
+  }
+
+  function createZzz() {
+    if (state !== 'sleeping') return;
+    const z = document.createElement('div');
+    z.className = 'zzz-particle';
+    z.textContent = 'Zzz';
+    // 펫 위치 기준으로 생성
+    z.style.left = (x + PET_W / 2) + 'px';
+    z.style.top = (y) + 'px';
+    document.body.appendChild(z);
+    setTimeout(() => z.remove(), 3000);
   }
 
   // ============ 마우스 이벤트 ============
@@ -181,7 +225,7 @@
       // 3번 연속 클릭: 댄스!
       state = 'dancing';
       stateTimer = 180;
-      showThought('♪~');
+      showThought(getThoughts('dance'));
       clickCount = 0;
     } else {
       // 일반 클릭: 랜덤 반응
@@ -189,14 +233,14 @@
       if (r < 0.3) {
         state = 'shocked';
         stateTimer = 40;
-        showThought('!!');
+        showThought(getThoughts('click'));
       } else if (r < 0.6) {
         state = 'jumping';
         vy = -12;
         vx = (Math.random() - 0.5) * 8;
-        showThought('헤헤');
+        showThought(getThoughts('click'));
       } else {
-        showThought('쓰담쓰담');
+        showThought('🥰');
         pet.classList.add('petting');
         setTimeout(() => pet.classList.remove('petting'), 1000);
       }
@@ -242,10 +286,14 @@
     } else if (r < 0.85) {
       state = 'sitting';
       stateTimer = 200 + Math.random() * 200;
-    } else if (r < 0.95) {
+    } else if (r < 0.93) {
       state = 'dancing';
       stateTimer = 150;
       showThought('♪');
+    } else if (r < 0.98) {
+      state = 'sleeping';
+      stateTimer = 600 + Math.random() * 600; // 오래 잠
+      showThought('zzZ');
     } else {
       state = 'idle';
       stateTimer = 100 + Math.random() * 100;
@@ -318,6 +366,9 @@
           state = 'idle';
           stateTimer = 40;
         }
+      } else if (state === 'sleeping') {
+        vx = 0;
+        if (stateTimer <= 0) state = 'idle';
       }
 
       x += vx;
@@ -351,6 +402,11 @@
       }
     }
 
+    // 자는 중 Zzz 파티클 생성
+    if (state === 'sleeping' && Math.random() < 0.015) {
+      createZzz();
+    }
+
     pet.style.transform = `translate(${x}px, ${y}px)`;
     // CSS 애니메이션용 변수 주입
     pet.style.setProperty('--x', `${x}px`);
@@ -371,5 +427,5 @@
     if (x > window.innerWidth - PET_W) x = window.innerWidth - PET_W;
   });
 
-  setTimeout(() => showThought('안녕!'), 500);
+  setTimeout(() => showThought('hi! 👋'), 500);
 })();
