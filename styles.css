@@ -1,0 +1,193 @@
+#screen-pet {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  z-index: 2147483647;
+  pointer-events: auto;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  will-change: transform;
+  transition: none;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+}
+
+#screen-pet.hidden {
+  display: none;
+}
+
+#screen-pet.dragging {
+  cursor: grabbing;
+}
+
+#screen-pet .pet-inner {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  position: relative;
+}
+
+#screen-pet svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+/* 말풍선 */
+.pet-thought {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  background: #fff;
+  color: #2c1810;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-family: -apple-system, "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pet-thought::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: #fff;
+}
+
+.pet-thought.show {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* scaleX(-1)이 걸려도 텍스트는 뒤집히지 않게 보정하기 어려우니
+   말풍선은 inner가 아닌 펫 전체에 기준해서 위치 */
+
+/* ============ 꼬리 흔들기 ============ */
+.pet-tail {
+  transform-origin: 18px 52px;
+  animation: tail-wag 1.4s ease-in-out infinite;
+}
+@keyframes tail-wag {
+  0%, 100% { transform: rotate(-15deg); }
+  50%      { transform: rotate(20deg); }
+}
+#screen-pet[data-state="running"] .pet-tail,
+#screen-pet[data-state="chasing"] .pet-tail {
+  animation-duration: 0.5s;
+}
+#screen-pet[data-state="jumping"] .pet-tail,
+#screen-pet[data-state="falling"] .pet-tail {
+  animation: tail-jump 0.6s ease-out infinite;
+}
+@keyframes tail-jump {
+  0%, 100% { transform: rotate(10deg); }
+  50%      { transform: rotate(-20deg); }
+}
+
+/* ============ 눈 깜빡이기 ============ */
+.pet-eye {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: blink 5s infinite;
+}
+.pet-eye-right { animation-delay: 0.02s; }
+@keyframes blink {
+  0%, 94%, 100% { transform: scaleY(1); }
+  96%, 98%      { transform: scaleY(0.1); }
+}
+
+/* ============ 다리 걷기 ============ */
+.pet-leg {
+  transform-origin: center top;
+  transform-box: fill-box;
+}
+
+#screen-pet[data-state="walking"] .pet-leg-back-1,
+#screen-pet[data-state="walking"] .pet-leg-front-1 {
+  animation: leg-walk 0.45s linear infinite;
+}
+#screen-pet[data-state="walking"] .pet-leg-back-2,
+#screen-pet[data-state="walking"] .pet-leg-front-2 {
+  animation: leg-walk 0.45s linear infinite reverse;
+}
+
+#screen-pet[data-state="running"] .pet-leg-back-1,
+#screen-pet[data-state="running"] .pet-leg-front-1,
+#screen-pet[data-state="chasing"] .pet-leg-back-1,
+#screen-pet[data-state="chasing"] .pet-leg-front-1 {
+  animation: leg-run 0.18s linear infinite;
+}
+#screen-pet[data-state="running"] .pet-leg-back-2,
+#screen-pet[data-state="running"] .pet-leg-front-2,
+#screen-pet[data-state="chasing"] .pet-leg-back-2,
+#screen-pet[data-state="chasing"] .pet-leg-front-2 {
+  animation: leg-run 0.18s linear infinite reverse;
+}
+
+@keyframes leg-walk {
+  0%, 100% { transform: translateY(0) rotate(-12deg); }
+  50%      { transform: translateY(-3px) rotate(12deg); }
+}
+
+@keyframes leg-run {
+  0%, 100% { transform: translateY(0) rotate(-25deg); }
+  50%      { transform: translateY(-5px) rotate(25deg); }
+}
+
+/* 점프 중 다리 모으기 */
+#screen-pet[data-state="jumping"] .pet-leg,
+#screen-pet[data-state="falling"] .pet-leg {
+  transform: translateY(-2px) rotate(0deg);
+}
+
+/* ============ 몸 바운스 ============ */
+#screen-pet[data-state="walking"] .pet-body-shape,
+#screen-pet[data-state="walking"] .pet-head {
+  animation: body-bob 0.45s ease-in-out infinite;
+}
+#screen-pet[data-state="running"] .pet-body-shape,
+#screen-pet[data-state="running"] .pet-head,
+#screen-pet[data-state="chasing"] .pet-body-shape,
+#screen-pet[data-state="chasing"] .pet-head {
+  animation: body-bob 0.18s ease-in-out infinite;
+}
+
+@keyframes body-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-1.5px); }
+}
+
+/* 앉아있을 때 살짝 숨쉬는 느낌 */
+#screen-pet[data-state="sitting"] .pet-body-shape,
+#screen-pet[data-state="idle"] .pet-body-shape {
+  animation: breathe 2.5s ease-in-out infinite;
+  transform-origin: center bottom;
+  transform-box: fill-box;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1, 1); }
+  50%      { transform: scale(1.02, 0.98); }
+}
+
+/* 잡혔을 때 허우적대기 */
+#screen-pet.dragging .pet-leg {
+  animation: leg-run 0.15s linear infinite !important;
+}
+#screen-pet.dragging .pet-leg-back-2,
+#screen-pet.dragging .pet-leg-front-2 {
+  animation-direction: reverse !important;
+}
