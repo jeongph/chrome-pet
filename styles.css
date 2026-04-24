@@ -476,6 +476,33 @@
 }
 
 /* 하트 입자용 */
+/* ============ 나무늘보 - 모든 것이 느림 ============ */
+#screen-pet[data-pet="sloth"] .pet-tail {
+  animation-duration: 4s;
+}
+
+#screen-pet[data-pet="sloth"] .pet-eye {
+  animation: blink 10s infinite;
+}
+
+#screen-pet[data-pet="sloth"][data-state="walking"] .pet-body-shape,
+#screen-pet[data-pet="sloth"][data-state="walking"] .pet-head {
+  animation-duration: 1.2s;
+}
+
+#screen-pet[data-pet="sloth"][data-state="running"] .pet-body-shape,
+#screen-pet[data-pet="sloth"][data-state="running"] .pet-head {
+  animation-duration: 0.7s;
+}
+
+#screen-pet[data-pet="sloth"] .pet-leg {
+  animation-duration: 1.2s !important;
+}
+
+#screen-pet[data-pet="sloth"][data-state="running"] .pet-leg {
+  animation-duration: 0.5s !important;
+}
+
 .pet-heart-particle {
   position: fixed;
   pointer-events: none;

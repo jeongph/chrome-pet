@@ -154,8 +154,35 @@
     </svg>
   `;
 
-  global.PET_SVGS = { cat: CAT, dog: DOG, hamster: HAMSTER, dino: DINO };
-  global.PET_NAMES = { cat: 'Ginger Cat', dog: 'Maltese', hamster: 'Hamster', dino: 'Dino' };
-  global.PET_LIST = ['cat', 'dog', 'hamster', 'dino'];
+  const SLOTH = `
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <ellipse class="pet-tail" cx="20" cy="56" rx="5" ry="3.5" fill="#7a6a56"/>
+      <ellipse class="pet-body-shape" cx="42" cy="53" rx="21" ry="15" fill="#a08e78"/>
+      <ellipse cx="42" cy="57" rx="13" ry="8" fill="#c8b89e" opacity="0.6"/>
+      <rect class="pet-leg pet-leg-back-1"  x="28" y="62" width="7" height="9" fill="#7a6a56" rx="3"/>
+      <rect class="pet-leg pet-leg-back-2"  x="36" y="62" width="7" height="9" fill="#6a5a46" rx="3"/>
+      <rect class="pet-leg pet-leg-front-1" x="48" y="62" width="7" height="9" fill="#7a6a56" rx="3"/>
+      <rect class="pet-leg pet-leg-front-2" x="56" y="62" width="7" height="9" fill="#6a5a46" rx="3"/>
+      <circle class="pet-head" cx="60" cy="38" r="14" fill="#a08e78"/>
+      <circle cx="50" cy="27" r="4" fill="#8a7a66"/>
+      <circle cx="70" cy="27" r="4" fill="#8a7a66"/>
+      <circle cx="50" cy="27.5" r="2.2" fill="#c8a090"/>
+      <circle cx="70" cy="27.5" r="2.2" fill="#c8a090"/>
+      <ellipse cx="54" cy="37" rx="5" ry="3.8" fill="#3e2e1e" opacity="0.5"/>
+      <ellipse cx="66" cy="37" rx="5" ry="3.8" fill="#3e2e1e" opacity="0.5"/>
+      <ellipse class="pet-eye pet-eye-left"  cx="54" cy="37" rx="2" ry="1.4" fill="#1a0e08"/>
+      <ellipse class="pet-eye pet-eye-right" cx="66" cy="37" rx="2" ry="1.4" fill="#1a0e08"/>
+      <circle cx="54.6" cy="36.5" r="0.5" fill="#fff"/>
+      <circle cx="66.6" cy="36.5" r="0.5" fill="#fff"/>
+      <ellipse cx="60" cy="42" rx="3" ry="2" fill="#6a4a36"/>
+      <path d="M55 46 Q60 50 65 46" stroke="#5a3828" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="49" cy="42" r="2.5" fill="#e8a878" opacity="0.35"/>
+      <circle cx="71" cy="42" r="2.5" fill="#e8a878" opacity="0.35"/>
+    </svg>
+  `;
+
+  global.PET_SVGS = { cat: CAT, dog: DOG, hamster: HAMSTER, dino: DINO, sloth: SLOTH };
+  global.PET_NAMES = { cat: 'Ginger Cat', dog: 'Maltese', hamster: 'Hamster', dino: 'Dino', sloth: 'Sloth' };
+  global.PET_LIST = ['cat', 'dog', 'hamster', 'dino', 'sloth'];
   global.DEFAULT_PET = 'cat';
 })(typeof window !== 'undefined' ? window : self);
