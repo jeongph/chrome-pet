@@ -156,28 +156,41 @@
 
   const SLOTH = `
     <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <!-- 짧은 꼬리 -->
       <ellipse class="pet-tail" cx="20" cy="56" rx="5" ry="3.5" fill="#7a6a56"/>
+      <!-- 몸통 -->
       <ellipse class="pet-body-shape" cx="42" cy="53" rx="21" ry="15" fill="#a08e78"/>
+      <!-- 배 하이라이트 -->
       <ellipse cx="42" cy="57" rx="13" ry="8" fill="#c8b89e" opacity="0.6"/>
+      <!-- 몸통 털 질감 (살짝 녹빛 얼룩) -->
+      <ellipse cx="35" cy="48" rx="3" ry="2" fill="#8a9a72" opacity="0.25"/>
+      <ellipse cx="48" cy="50" rx="2.5" ry="1.8" fill="#8a9a72" opacity="0.2"/>
+      <!-- 다리 -->
       <rect class="pet-leg pet-leg-back-1"  x="28" y="62" width="7" height="9" fill="#7a6a56" rx="3"/>
       <rect class="pet-leg pet-leg-back-2"  x="36" y="62" width="7" height="9" fill="#6a5a46" rx="3"/>
       <rect class="pet-leg pet-leg-front-1" x="48" y="62" width="7" height="9" fill="#7a6a56" rx="3"/>
       <rect class="pet-leg pet-leg-front-2" x="56" y="62" width="7" height="9" fill="#6a5a46" rx="3"/>
+      <!-- 발톱 (나무늘보 특유의 긴 발톱 암시) -->
+      <path d="M30 71 L29 74" stroke="#3a2a18" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M38 71 L37 74" stroke="#3a2a18" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M50 71 L49 74" stroke="#3a2a18" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M58 71 L57 74" stroke="#3a2a18" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- 머리 (귀 없음) -->
       <circle class="pet-head" cx="60" cy="38" r="14" fill="#a08e78"/>
-      <circle cx="50" cy="27" r="4" fill="#8a7a66"/>
-      <circle cx="70" cy="27" r="4" fill="#8a7a66"/>
-      <circle cx="50" cy="27.5" r="2.2" fill="#c8a090"/>
-      <circle cx="70" cy="27.5" r="2.2" fill="#c8a090"/>
-      <ellipse cx="54" cy="37" rx="5" ry="3.8" fill="#3e2e1e" opacity="0.5"/>
-      <ellipse cx="66" cy="37" rx="5" ry="3.8" fill="#3e2e1e" opacity="0.5"/>
-      <ellipse class="pet-eye pet-eye-left"  cx="54" cy="37" rx="2" ry="1.4" fill="#1a0e08"/>
-      <ellipse class="pet-eye pet-eye-right" cx="66" cy="37" rx="2" ry="1.4" fill="#1a0e08"/>
-      <circle cx="54.6" cy="36.5" r="0.5" fill="#fff"/>
-      <circle cx="66.6" cy="36.5" r="0.5" fill="#fff"/>
-      <ellipse cx="60" cy="42" rx="3" ry="2" fill="#6a4a36"/>
-      <path d="M55 46 Q60 50 65 46" stroke="#5a3828" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-      <circle cx="49" cy="42" r="2.5" fill="#e8a878" opacity="0.35"/>
-      <circle cx="71" cy="42" r="2.5" fill="#e8a878" opacity="0.35"/>
+      <!-- 머즐(주둥이) 밝은 영역 -->
+      <ellipse cx="60" cy="46" rx="10" ry="6" fill="#d8c8a8" opacity="0.75"/>
+      <!-- 눈 주변 어두운 고글 (나무늘보 시그니처 마스크) -->
+      <ellipse cx="54" cy="36" rx="6" ry="4.5" fill="#4a3826" opacity="0.6"/>
+      <ellipse cx="66" cy="36" rx="6" ry="4.5" fill="#4a3826" opacity="0.6"/>
+      <!-- 코로 내려오는 어두운 세로줄 -->
+      <path d="M60 38 L60 44" stroke="#4a3826" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
+      <!-- 감은 눈 (졸린 곡선) -->
+      <path d="M51 36 Q54 38.5 57 36" stroke="#1a0e08" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M63 36 Q66 38.5 69 36" stroke="#1a0e08" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <!-- 코 -->
+      <ellipse cx="60" cy="44" rx="2" ry="1.3" fill="#1a0e08"/>
+      <!-- 자연스러운 미소 -->
+      <path d="M54 48 Q60 53 66 48" stroke="#3a2818" stroke-width="1.4" fill="none" stroke-linecap="round"/>
     </svg>
   `;
 

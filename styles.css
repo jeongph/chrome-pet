@@ -481,10 +481,6 @@
   animation-duration: 4s;
 }
 
-#screen-pet[data-pet="sloth"] .pet-eye {
-  animation: blink 10s infinite;
-}
-
 #screen-pet[data-pet="sloth"][data-state="walking"] .pet-body-shape,
 #screen-pet[data-pet="sloth"][data-state="walking"] .pet-head {
   animation-duration: 1.2s;
