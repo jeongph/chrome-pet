@@ -121,11 +121,11 @@
       chase: ['🏃', '🌿', '🦕!', 'chomp!', 'mine!'],
       dance: ['🎵', '🎶', '🦕', '♪', 'dance~', 'wooo!'],
     },
-    sloth: {
-      idle: ['🦥', '💤', '🌿', '♡', '…', 'zzZ', 'no rush~', '5 more mins', '🍃', 'comfy ♡', 'slowly~', 'mmm', '😪', '🌙', 'so slow...'],
-      click: ['😲', '!?', 'wha...', 'oh.', '🦥!', 'hm...', 'patience~', 'slowly!'],
-      chase: ['wait...', 'almost~', '🦥...', 'soon...', '🐌'],
-      dance: ['🎵', '...♪', '🦥', 'lazy dance~', 'slow~'],
+    penguin: {
+      idle: ['🐧', '💤', '🐟', '❄️', '♡', '🧊', '💭', '🌊', '😊', '🥶', '🥰', 'noot~', 'zzZ', 'hmm', 'hehe', '…', 'yawn~', 'cozy ♡', 'waddle~'],
+      click: ['🐧!', '💕', '🥺', '😳', '🫣', '!!', 'hehe', 'noot noot!', 'yay!', 'more!', 'squawk!', 'fishy!'],
+      chase: ['🏃', '🐟', '🐧!', 'waddle!', 'mine!'],
+      dance: ['🎵', '🎶', '🐧', '♪', 'waddle~', 'wooo!'],
     },
   };
 
@@ -242,8 +242,8 @@
         showThought(getThoughts('click'));
       } else if (r < 0.6) {
         state = 'jumping';
-        vy = currentPet === 'sloth' ? -6 : -12;
-        vx = (Math.random() - 0.5) * (currentPet === 'sloth' ? 2 : 8);
+        vy = -12;
+        vx = (Math.random() - 0.5) * 8;
         showThought(getThoughts('click'));
       } else {
         showThought('🥰');
@@ -275,22 +275,6 @@
 
   function chooseNextAction() {
     const r = Math.random();
-    if (currentPet === 'sloth') {
-      if (r < 0.15) {
-        state = 'walking'; pickRandomTarget(); stateTimer = 400;
-      } else if (r < 0.22) {
-        state = 'running'; pickRandomTarget(); stateTimer = 200;
-      } else if (r < 0.27) {
-        state = 'jumping'; vy = -8; vx = (Math.random() - 0.5) * 3; stateTimer = 80;
-      } else if (r < 0.58) {
-        state = 'sitting'; stateTimer = 300 + Math.random() * 400;
-      } else if (r < 0.62) {
-        state = 'dancing'; stateTimer = 150; showThought('...♪');
-      } else {
-        state = 'sleeping'; stateTimer = 800 + Math.random() * 1000; showThought('zzZ');
-      }
-      return;
-    }
     if (r < 0.3) {
       state = 'walking';
       pickRandomTarget();
@@ -332,12 +316,10 @@
       const cursorDist = mouseX - (x + PET_W / 2);
       const cursorAbsDist = Math.abs(cursorDist);
 
-      const chaseRange = currentPet === 'sloth' ? 150 : 400;
       if (
         cursorActive && cursorLow &&
-        cursorAbsDist < chaseRange && cursorAbsDist > 30 &&
-        ['jumping', 'falling', 'dancing', 'shocked'].indexOf(state) === -1 &&
-        !(currentPet === 'sloth' && state === 'sleeping')
+        cursorAbsDist < 400 && cursorAbsDist > 30 &&
+        ['jumping', 'falling', 'dancing', 'shocked'].indexOf(state) === -1
       ) {
         state = 'chasing';
         targetX = mouseX - PET_W / 2;
@@ -353,7 +335,7 @@
           state = 'idle';
           stateTimer = 60 + Math.random() * 120;
         } else {
-          vx = Math.sign(dx) * (currentPet === 'sloth' ? 0.7 : 1.8);
+          vx = Math.sign(dx) * 1.8;
           facing = Math.sign(dx);
         }
       } else if (state === 'running') {
@@ -362,7 +344,7 @@
           state = 'idle';
           stateTimer = 30 + Math.random() * 60;
         } else {
-          vx = Math.sign(dx) * (currentPet === 'sloth' ? 1.5 : 4.5);
+          vx = Math.sign(dx) * 4.5;
           facing = Math.sign(dx);
         }
       } else if (state === 'chasing') {
@@ -372,7 +354,7 @@
           stateTimer = 40;
           if (Math.random() < 0.5) showThought();
         } else {
-          vx = Math.sign(dx) * (currentPet === 'sloth' ? 0.8 : 5.5);
+          vx = Math.sign(dx) * 5.5;
           facing = Math.sign(dx);
         }
       } else if (state === 'dancing') {

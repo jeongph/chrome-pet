@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Screen Pet - 화면 펫",
   "version": "1.2.0",
-  "description": "화면을 뛰어다니는 귀여운 펫 친구! 고양이 🐱 강아지 🐶 햄스터 🐹 공룡 🦕 나무늘보 🦥 중 선택 가능",
+  "description": "화면을 뛰어다니는 귀여운 펫 친구! 고양이 🐱 강아지 🐶 햄스터 🐹 공룡 🦕 펭귄 🐧 중 선택 가능",
   "permissions": ["storage", "tabs"],
   "action": {
     "default_popup": "popup.html",

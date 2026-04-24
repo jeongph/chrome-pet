@@ -154,48 +154,42 @@
     </svg>
   `;
 
-  const SLOTH = `
+  const PENGUIN = `
     <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
       <!-- 짧은 꼬리 -->
-      <ellipse class="pet-tail" cx="20" cy="56" rx="5" ry="3.5" fill="#7a6a56"/>
-      <!-- 몸통 -->
-      <ellipse class="pet-body-shape" cx="42" cy="53" rx="21" ry="15" fill="#a08e78"/>
-      <!-- 배 하이라이트 -->
-      <ellipse cx="42" cy="57" rx="13" ry="8" fill="#c8b89e" opacity="0.6"/>
-      <!-- 몸통 털 질감 (살짝 녹빛 얼룩) -->
-      <ellipse cx="35" cy="48" rx="3" ry="2" fill="#8a9a72" opacity="0.25"/>
-      <ellipse cx="48" cy="50" rx="2.5" ry="1.8" fill="#8a9a72" opacity="0.2"/>
-      <!-- 다리 -->
-      <rect class="pet-leg pet-leg-back-1"  x="28" y="62" width="7" height="9" fill="#7a6a56" rx="3"/>
-      <rect class="pet-leg pet-leg-back-2"  x="36" y="62" width="7" height="9" fill="#6a5a46" rx="3"/>
-      <rect class="pet-leg pet-leg-front-1" x="48" y="62" width="7" height="9" fill="#7a6a56" rx="3"/>
-      <rect class="pet-leg pet-leg-front-2" x="56" y="62" width="7" height="9" fill="#6a5a46" rx="3"/>
-      <!-- 발톱 (나무늘보 특유의 긴 발톱 암시) -->
-      <path d="M30 71 L29 74" stroke="#3a2a18" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M38 71 L37 74" stroke="#3a2a18" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M50 71 L49 74" stroke="#3a2a18" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M58 71 L57 74" stroke="#3a2a18" stroke-width="1.2" stroke-linecap="round"/>
-      <!-- 머리 (귀 없음) -->
-      <circle class="pet-head" cx="60" cy="38" r="14" fill="#a08e78"/>
-      <!-- 머즐(주둥이) 밝은 영역 -->
-      <ellipse cx="60" cy="46" rx="10" ry="6" fill="#d8c8a8" opacity="0.75"/>
-      <!-- 눈 주변 어두운 고글 (나무늘보 시그니처 마스크) -->
-      <ellipse cx="54" cy="36" rx="6" ry="4.5" fill="#4a3826" opacity="0.6"/>
-      <ellipse cx="66" cy="36" rx="6" ry="4.5" fill="#4a3826" opacity="0.6"/>
-      <!-- 코로 내려오는 어두운 세로줄 -->
-      <path d="M60 38 L60 44" stroke="#4a3826" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
-      <!-- 감은 눈 (졸린 곡선) -->
-      <path d="M51 36 Q54 38.5 57 36" stroke="#1a0e08" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <path d="M63 36 Q66 38.5 69 36" stroke="#1a0e08" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <!-- 코 -->
-      <ellipse cx="60" cy="44" rx="2" ry="1.3" fill="#1a0e08"/>
-      <!-- 자연스러운 미소 -->
-      <path d="M54 48 Q60 53 66 48" stroke="#3a2818" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+      <path class="pet-tail" d="M22 58 Q14 60 18 54"
+            stroke="#1f2d3f" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- 몸통 (짙은 남색, 직립형 타원) -->
+      <ellipse class="pet-body-shape" cx="42" cy="48" rx="19" ry="22" fill="#2a3a52"/>
+      <!-- 배 (흰색) -->
+      <ellipse cx="43" cy="52" rx="12" ry="16" fill="#fff5e0"/>
+      <!-- 왼쪽 날개/지느러미 -->
+      <ellipse cx="24" cy="50" rx="4" ry="13" fill="#1f2d3f" transform="rotate(-8 24 50)"/>
+      <!-- 오른쪽 날개/지느러미 -->
+      <ellipse cx="62" cy="50" rx="4" ry="13" fill="#1f2d3f" transform="rotate(8 62 50)"/>
+      <!-- 발 (주황색 물갈퀴) -->
+      <rect class="pet-leg pet-leg-back-1 pet-leg-front-1" x="31" y="69" width="10" height="5" fill="#ff9a3c" rx="2"/>
+      <rect class="pet-leg pet-leg-back-2 pet-leg-front-2" x="42" y="69" width="10" height="5" fill="#e88424" rx="2"/>
+      <!-- 머리 -->
+      <circle class="pet-head" cx="42" cy="26" r="15" fill="#2a3a52"/>
+      <!-- 얼굴 마스크 (흰색, 하트 모양) -->
+      <path d="M42 17 Q30 21 32 31 Q36 38 42 37 Q48 38 52 31 Q54 21 42 17 Z" fill="#fff5e0"/>
+      <!-- 눈 -->
+      <circle class="pet-eye pet-eye-left" cx="37" cy="27" r="1.8" fill="#1a0e08"/>
+      <circle class="pet-eye pet-eye-right" cx="47" cy="27" r="1.8" fill="#1a0e08"/>
+      <circle cx="37.5" cy="26.5" r="0.6" fill="#fff"/>
+      <circle cx="47.5" cy="26.5" r="0.6" fill="#fff"/>
+      <!-- 부리 (주황색 다이아몬드) -->
+      <path d="M38 32 L46 32 L42 39 Z" fill="#ff9a3c" stroke="#cc6a10" stroke-width="0.3"/>
+      <line x1="38" y1="33.5" x2="46" y2="33.5" stroke="#cc6a10" stroke-width="0.4"/>
+      <!-- 볼터치 -->
+      <circle cx="33" cy="32" r="1.8" fill="#ff9a9a" opacity="0.5"/>
+      <circle cx="51" cy="32" r="1.8" fill="#ff9a9a" opacity="0.5"/>
     </svg>
   `;
 
-  global.PET_SVGS = { cat: CAT, dog: DOG, hamster: HAMSTER, dino: DINO, sloth: SLOTH };
-  global.PET_NAMES = { cat: 'Ginger Cat', dog: 'Maltese', hamster: 'Hamster', dino: 'Dino', sloth: 'Sloth' };
-  global.PET_LIST = ['cat', 'dog', 'hamster', 'dino', 'sloth'];
+  global.PET_SVGS = { cat: CAT, dog: DOG, hamster: HAMSTER, dino: DINO, penguin: PENGUIN };
+  global.PET_NAMES = { cat: 'Ginger Cat', dog: 'Maltese', hamster: 'Hamster', dino: 'Dino', penguin: 'Penguin' };
+  global.PET_LIST = ['cat', 'dog', 'hamster', 'dino', 'penguin'];
   global.DEFAULT_PET = 'cat';
 })(typeof window !== 'undefined' ? window : self);

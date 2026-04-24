@@ -476,40 +476,24 @@
 }
 
 /* 하트 입자용 */
-/* ============ 나무늘보 - 모든 것이 느림 ============ */
-#screen-pet[data-pet="sloth"] .pet-tail {
-  animation-duration: 4s;
+/* ============ 펭귄 - 뒤뚱뒤뚱 왜들 ============ */
+#screen-pet[data-pet="penguin"][data-state="walking"] .pet-inner {
+  animation: penguin-waddle 0.45s ease-in-out infinite;
 }
 
-#screen-pet[data-pet="sloth"][data-state="walking"] .pet-body-shape,
-#screen-pet[data-pet="sloth"][data-state="walking"] .pet-head {
-  animation-duration: 1.2s;
+#screen-pet[data-pet="penguin"][data-state="running"] .pet-inner,
+#screen-pet[data-pet="penguin"][data-state="chasing"] .pet-inner {
+  animation: penguin-waddle 0.2s ease-in-out infinite;
 }
 
-#screen-pet[data-pet="sloth"][data-state="running"] .pet-body-shape,
-#screen-pet[data-pet="sloth"][data-state="running"] .pet-head {
-  animation-duration: 0.7s;
-}
+@keyframes penguin-waddle {
+  0%, 100% {
+    transform: scaleX(var(--facing)) rotate(-5deg);
+  }
 
-#screen-pet[data-pet="sloth"] .pet-leg {
-  animation-duration: 1.2s !important;
-}
-
-#screen-pet[data-pet="sloth"][data-state="running"] .pet-leg {
-  animation-duration: 0.5s !important;
-}
-
-#screen-pet[data-pet="sloth"][data-state="dancing"] .pet-inner {
-  animation-duration: 1.4s;
-}
-
-#screen-pet[data-pet="sloth"][data-state="dancing"] .pet-body-shape,
-#screen-pet[data-pet="sloth"][data-state="dancing"] .pet-head {
-  animation-duration: 0.7s;
-}
-
-#screen-pet[data-pet="sloth"][data-state="shocked"] .pet-inner {
-  animation-duration: 0.3s;
+  50% {
+    transform: scaleX(var(--facing)) rotate(5deg);
+  }
 }
 
 .pet-heart-particle {
