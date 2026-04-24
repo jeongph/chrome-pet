@@ -503,6 +503,19 @@
   animation-duration: 0.5s !important;
 }
 
+#screen-pet[data-pet="sloth"][data-state="dancing"] .pet-inner {
+  animation-duration: 1.4s;
+}
+
+#screen-pet[data-pet="sloth"][data-state="dancing"] .pet-body-shape,
+#screen-pet[data-pet="sloth"][data-state="dancing"] .pet-head {
+  animation-duration: 0.7s;
+}
+
+#screen-pet[data-pet="sloth"][data-state="shocked"] .pet-inner {
+  animation-duration: 0.3s;
+}
+
 .pet-heart-particle {
   position: fixed;
   pointer-events: none;

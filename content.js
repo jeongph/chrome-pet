@@ -242,8 +242,8 @@
         showThought(getThoughts('click'));
       } else if (r < 0.6) {
         state = 'jumping';
-        vy = -12;
-        vx = (Math.random() - 0.5) * 8;
+        vy = currentPet === 'sloth' ? -6 : -12;
+        vx = (Math.random() - 0.5) * (currentPet === 'sloth' ? 2 : 8);
         showThought(getThoughts('click'));
       } else {
         showThought('🥰');
@@ -332,10 +332,12 @@
       const cursorDist = mouseX - (x + PET_W / 2);
       const cursorAbsDist = Math.abs(cursorDist);
 
+      const chaseRange = currentPet === 'sloth' ? 150 : 400;
       if (
         cursorActive && cursorLow &&
-        cursorAbsDist < 400 && cursorAbsDist > 30 &&
-        ['jumping', 'falling', 'dancing', 'shocked'].indexOf(state) === -1
+        cursorAbsDist < chaseRange && cursorAbsDist > 30 &&
+        ['jumping', 'falling', 'dancing', 'shocked'].indexOf(state) === -1 &&
+        !(currentPet === 'sloth' && state === 'sleeping')
       ) {
         state = 'chasing';
         targetX = mouseX - PET_W / 2;
@@ -370,7 +372,7 @@
           stateTimer = 40;
           if (Math.random() < 0.5) showThought();
         } else {
-          vx = Math.sign(dx) * (currentPet === 'sloth' ? 2.0 : 5.5);
+          vx = Math.sign(dx) * (currentPet === 'sloth' ? 0.8 : 5.5);
           facing = Math.sign(dx);
         }
       } else if (state === 'dancing') {
